@@ -1,0 +1,74 @@
+*,
+::after,
+::before {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: whitesmoke;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content {
+  max-width: 700px;
+  width: 90%;
+  margin: auto;
+  background-color: white;
+  padding: 1rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+button,
+.btn {
+  cursor: pointer;
+}
+
+button,
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.ReactModal__Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+.delete-modal {
+  padding: 1rem;
+}
+.delete-modal > h4 {
+  text-align: center;
+}
+
+.delete-modal > .cta-btns {
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.danger-btn {
+  background-color: #eb4034;
+  color: white;
+}
