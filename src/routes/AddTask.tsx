@@ -1,5 +1,6 @@
 import TodoForm from "../components/TodoForm";
 import { useTodoProvider, TodoProps } from "../store/AppStore";
+import { motion } from "framer-motion";
 
 const AddTask = () => {
   const { addTask } = useTodoProvider();
@@ -8,7 +9,11 @@ const AddTask = () => {
     addTask(newTask);
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <TodoForm
         initialFormValues={{ title: "", description: "", id: "" }}
         formTitle="Add New Task"
@@ -16,7 +21,7 @@ const AddTask = () => {
         successMsg="Task added successfully"
         clearField
       />
-    </>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import TaskCard from "../components/TaskCard";
 Modal.setAppElement("#root");
+import { motion } from "framer-motion";
 
 const moduleStyles = {
   content: {
@@ -54,56 +55,64 @@ const TodoList = () => {
   }, [allTasks, status]);
 
   return (
-    <Wrapper className="content">
-      <div className="tab-controls">
-        <p
-          onClick={() => setStatus("all")}
-          className={`${status === "all" ? "tab-toggle active" : "tab-toggle"}`}
-        >
-          All tasks
-        </p>
-        <p
-          onClick={() => setStatus("completed")}
-          className={`${
-            status === "completed" ? "tab-toggle active" : "tab-toggle"
-          }`}
-        >
-          Completed tasks
-        </p>
-        <p
-          onClick={() => setStatus("not-completed")}
-          className={`${
-            status === "not-completed" ? "tab-toggle active" : "tab-toggle"
-          }`}
-        >
-          Uncompleted tasks
-        </p>
-      </div>
-      <div className="tasks">
-        {displayedTasks.map((item) => {
-          return <TaskCard key={item.id} item={item} popModal={popModal} />;
-        })}
-      </div>
-      <Modal isOpen={isModalOpen} style={moduleStyles}>
-        <div className="delete-modal">
-          <h4>Remove task from list?</h4>
-          <div className="cta-btns flex">
-            <button className="" onClick={() => setIsModalOpen(false)}>
-              Cancel
-            </button>
-            <button
-              className="danger-btn"
-              onClick={() => {
-                removeTask(taskId);
-                setIsModalOpen(false);
-              }}
-            >
-              Delete
-            </button>
-          </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <Wrapper className="content">
+        <div className="tab-controls">
+          <p
+            onClick={() => setStatus("all")}
+            className={`${
+              status === "all" ? "tab-toggle active" : "tab-toggle"
+            }`}
+          >
+            All tasks
+          </p>
+          <p
+            onClick={() => setStatus("completed")}
+            className={`${
+              status === "completed" ? "tab-toggle active" : "tab-toggle"
+            }`}
+          >
+            Completed tasks
+          </p>
+          <p
+            onClick={() => setStatus("not-completed")}
+            className={`${
+              status === "not-completed" ? "tab-toggle active" : "tab-toggle"
+            }`}
+          >
+            Uncompleted tasks
+          </p>
         </div>
-      </Modal>
-    </Wrapper>
+        <div className="tasks">
+          {displayedTasks.map((item) => {
+            return <TaskCard key={item.id} item={item} popModal={popModal} />;
+          })}
+        </div>
+        <Modal isOpen={isModalOpen} style={moduleStyles} closeTimeoutMS={400}>
+          <div className="delete-modal">
+            <h4>Remove task from list?</h4>
+            <div className="cta-btns flex">
+              <button className="" onClick={() => setIsModalOpen(false)}>
+                Cancel
+              </button>
+              <button
+                className="danger-btn"
+                onClick={() => {
+                  removeTask(taskId);
+                  setIsModalOpen(false);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </Modal>
+      </Wrapper>
+    </motion.div>
   );
 };
 
